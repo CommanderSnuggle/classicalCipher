@@ -1,17 +1,17 @@
 from caesarCipher import *
 from rowTran import *
-from railfence import *
+#from railfence import *
 from vig import *
-from playfair import *
-from monoalphabetic import *
+#from playfair import *
+from mac import *
 import sys
 
 cc = caesarCipher()
-rt = rowTrans()
-rf = Railfence()
+rt = RowTrans()
+#rf = Railfence()
 vg = VIG()
-pf = PlayFair()
-mc = Monoalphabetic()
+#pf = PlayFair()
+mc = MAC()
 
 def cipher(cipher_name, secret_key, enc_dec, input_file, output_file):
     intext = ""
@@ -23,12 +23,12 @@ def cipher(cipher_name, secret_key, enc_dec, input_file, output_file):
     print("The input file is :", input_file)
     print("The output file is :", output_file)
 
-    options = {"CES" : (cc.set_key, {"ENC" : cc.encrypt, "DEC" : cc.decryp}), 
-               "PLF" : (pf.setKey, {"ENC" : pf.encryption, "DEC" : pf.decryption}),
-               "RFC" : (rf.setKey, {"ENC" : rf.encryption, "DEC" : rf.decryption}),
+    options = {"CES" : (cc.set_key, {"ENC" : cc.encrypt, "DEC" : cc.decrypt}), 
+               #"PLF" : (pf.setKey, {"ENC" : pf.encryption, "DEC" : pf.decryption}),
+               #"RFC" : (rf.setKey, {"ENC" : rf.encryption, "DEC" : rf.decryption}),
                "VIG" : (vg.setKey, {"ENC" : vg.encrypt, "DEC" : vg.decrypt}),
                "RTS" : (rt.setKey, {"ENC" : rt.encrypt, "DEC" : rt.decrypt}),
-               "MAC" : (mc.setKey, {"ENC" : mc.encryption, "DEC" : mc.decryption})}
+               "MAC" : (mc.setKey, {"ENC" : mc.encrypt, "DEC" : mc.decrypt})}
 
     file = open(input_file, "r")
     for line in file:
@@ -49,4 +49,4 @@ if __name__ == "__main__":
     c = str(sys.argv[3])
     d = str(sys.argv[4])
     e = str(sys.argv[5])
-    cipher(a, b, c, d, e)
+cipher(a, b, c, d, e)
