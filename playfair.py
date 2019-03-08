@@ -1,3 +1,6 @@
+'''
+//Georden Grabuskie
+'''
 class playfair:
     matrix = [['A', 'B', 'C', 'D', 'E'], ['F', 'G', 'H', 'I', 'K'], ['L', 'M', 'N', 'O', 'P'], ['Q', 'R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']] # placeholder and default matrix
     message = []
@@ -5,8 +8,8 @@ class playfair:
     key = []
     lookup = {} #using a dictionary to store positions of letters to use to index into the matrix
     alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] #this is the base that get's converted to the matrix
-    def setKey(self, string):
-        self.key = string
+    def setKey(self, string): #
+        self.build_matrix(string)
     def build_matrix(self, string=''): #build matrix from given key
         for i in range(0, len(string)):
             if string[i].upper() not in self.key and not string[i].isspace(): #if lettter isn't used, add it
@@ -21,7 +24,7 @@ class playfair:
             self.matrix[i/5][i%5] = self.alphabet[i]
             self.lookup[self.alphabet[i]] = [i/5, i%5]
 
-    def setM(self, string): #set the message to encrypt
+    def setMessage_text(self, string): #set the message to encrypt
         for i in range(len(string)):
             if not string[i].isspace(): #strip spaces
                 self.message.append(string[i].upper())
@@ -31,8 +34,8 @@ class playfair:
         if (len(self.message) % 2) == 1:
             self.message.append('X') #pad with trailing 'X' if not even length
 
-
-    def setC(self, string):     #same as set message but sets the ciphertext you want to decode
+        print("encryption")
+    def setCipher_text(self, string):     #same as set message but sets the ciphertext you want to decode
         for i in range(len(string)):
             if not string[i].isspace():
                 self.cipher.append(string[i].upper())
@@ -62,16 +65,10 @@ class playfair:
         ra = [self.addr(charb)[1], self.addr(chara)[0]]
         rb = [self.addr(chara)[1], self.addr(charb)[0]]
         return self.matrix[rb[0]][rb[1]], self.matrix[ra[0]][ra[1]]
-
-    def tostring(self): #
-        print("KEY")
-        print(self.key)
-        print("MESSAGE")
-        print(self.message)
-        print("CIPHER")
-        print(self.cipher)
     
-    def encrypt(self): #encrypt message to ciphertext
+    def encryption(self, string): #encrypt message to ciphertext
+        self.clear()
+        self.setMessage_text(string)
         self.cipher = []
         for i in range(0, len(self.message)-1, 2):
             if self.addr(self.message[i])[1] == self.addr(self.message[i+1])[1]:
@@ -83,10 +80,12 @@ class playfair:
             else:
                 self.cipher.append(self.box(self.message[i], self.message[i+1])[0])
                 self.cipher.append(self.box(self.message[i], self.message[i+1])[1])
-        print(self.cipher)
+        return ''.join(self.cipher)
 
-    def decrypt(self): #decrypt ciphertext to plaintext message
-        self.message = []
+
+    def decryption(self, string): #decrypt ciphertext to plaintext message
+        self.clear()
+        self.setCipher_text(string)
         for i in range(0, len(self.cipher)-1, 2):
             if self.addr(self.cipher[i])[1] == self.addr(self.cipher[i+1])[1]:
                 self.message.append(self.ls(self.cipher[i]))
@@ -97,7 +96,8 @@ class playfair:
             else:
                 self.message.append(self.box(self.cipher[i], self.cipher[i+1])[0])
                 self.message.append(self.box(self.cipher[i], self.cipher[i+1])[1])
-        print(self.message)
-    def clear(self): #clear message and cipher to make sure encrypt and decrypt are working
+        return ''.join(self.message)
+
+    def clear(self): #clear message and cipher to make sure encrypt and decrypt are working and also not adding onto an existing message
         self.message = []
         self.cipher = []
