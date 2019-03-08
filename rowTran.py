@@ -38,7 +38,6 @@ class RowTrans:
                 for j in range(rows):
                     cipherText += cipherArr[j][int(self.key[i])-1]
 
-        print(cipherText)
         return cipherText
 
     def decrypt(self, ciphertext):
@@ -63,5 +62,4 @@ class RowTrans:
                 col = self.key.find(str(j+1))
                 plaintext += cipherArr[i][col]
 
-        print(plaintext)
         return plaintext
