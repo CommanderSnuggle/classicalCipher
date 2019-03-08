@@ -15,7 +15,6 @@ class MAC:
 
     def encrypt(self, plaintext):
 
-
         if not(self.error):
             plaintext = plaintext.replace(" ", "")
             plaintext = plaintext.upper()
@@ -28,6 +27,7 @@ class MAC:
             return ''.join(ciphertext)
         else:
             return "Monoalphabetic encryption key error."
+        
     def decrypt(self, ciphertext):
 
 
