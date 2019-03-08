@@ -7,40 +7,32 @@ class MAC:
         self.alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     def setKey(self,key):
-        self.key = list(key)
-        if not(set(key) == set(self.alphabet)):
-            print("Monoalphabetic cipher require all alphabet letters as a key. will replace the with random generated one")
-            temp_key = list(self.alphabet)
-            random.shuffle(temp_key)
-            self.key = temp_key
+        self.key = list(key.upper())
+        self.error = False
+        if not(set(self.key) == set(self.alphabet)):
+            print("Monoalphabetic cipher require 26 unique letters for the key, Please try again. Sample key: "+ self.alphabet)
+            self.error = True
 
     def encrypt(self, plaintext):
-
-        plaintext = plaintext.replace(" ", "")
-        plaintext = plaintext.upper()
-        if not hasattr(self, 'key'):
-            temp_key = list(self.alphabet)
-            random.shuffle(temp_key)
-            self.setKey(temp_key)
-
-        ciphertext = []
-
-        for letters in plaintext:
-            ciphertext.append(self.key[self.alphabet.index(letters)])
-
-        return ''.join(ciphertext)
-
+        if not(self.error):
+            plaintext = plaintext.replace(" ", "")
+            plaintext = plaintext.upper()
+            ciphertext = []
+            for letters in plaintext:
+                 ciphertext.append(self.key[self.alphabet.index(letters)])
+            return ''.join(ciphertext)
+        else:
+            return "Monoalphabetic encryption key error."
+        
     def decrypt(self, ciphertext):
-
-        ciphertext = ciphertext.replace(" ","")
-        ciphertext = ciphertext.upper()
-        if not hasattr(self, 'key'):
-            temp_key = list(self.alphabet)
-            random.shuffle(temp_key)
-            self.setKey(temp_key)
-
-        plaintext = []
-        for letters in ciphertext:
-            plaintext.append(self.alphabet[self.key.index(letters)])
-
-        return ''.join(plaintext)
+        if not(self.error):
+            ciphertext = ciphertext.replace(" ", "")
+            ciphertext = ciphertext.upper()
+            plaintext = []
+            for letters in ciphertext:
+                plaintext.append(self.alphabet[self.key.index(letters)])
+            return ''.join(plaintext)
+        else:
+            return "Monoalphabetic decryption key error."
+        
+        

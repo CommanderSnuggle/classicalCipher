@@ -1,6 +1,6 @@
 from caesarCipher import *
 from rowTran import *
-#from railfence import *
+from rf import *
 from vig import *
 #from playfair import *
 from mac import *
@@ -8,7 +8,7 @@ import sys
 
 cc = caesarCipher()
 rt = RowTrans()
-#rf = Railfence()
+rf = RailFence()
 vg = VIG()
 #pf = PlayFair()
 mc = MAC()
@@ -25,7 +25,7 @@ def cipher(cipher_name, secret_key, enc_dec, input_file, output_file):
 
     options = {"CES" : (cc.set_key, {"ENC" : cc.encrypt, "DEC" : cc.decrpyt}), 
                #"PLF" : (pf.setKey, {"ENC" : pf.encryption, "DEC" : pf.decryption}),
-               #"RFC" : (rf.setKey, {"ENC" : rf.encryption, "DEC" : rf.decryption}),
+               "RFC" : (rf.setKey, {"ENC" : rf.encrypt, "DEC" : rf.decrypt}),
                "VIG" : (vg.setKey, {"ENC" : vg.encrypt, "DEC" : vg.decrypt}),
                "RTS" : (rt.setKey, {"ENC" : rt.encrypt, "DEC" : rt.decrypt}),
                "MAC" : (mc.setKey, {"ENC" : mc.encrypt, "DEC" : mc.decrypt})}
