@@ -23,7 +23,7 @@ def cipher(cipher_name, secret_key, enc_dec, input_file, output_file):
     print("The input file is :", input_file)
     print("The output file is :", output_file)
 
-    options = {"CES" : (cc.set_key, {"ENC" : cc.encrypt, "DEC" : cc.decrypt}), 
+    options = {"CES" : (cc.set_key, {"ENC" : cc.encrypt, "DEC" : cc.decrpyt}), 
                #"PLF" : (pf.setKey, {"ENC" : pf.encryption, "DEC" : pf.decryption}),
                #"RFC" : (rf.setKey, {"ENC" : rf.encryption, "DEC" : rf.decryption}),
                "VIG" : (vg.setKey, {"ENC" : vg.encrypt, "DEC" : vg.decrypt}),
