@@ -24,7 +24,7 @@ def cipher(cipher_name, secret_key, enc_dec, input_file, output_file):
     print("The output file is :", output_file)
 
     options = {"CES" : (cc.setKey, {"ENC" : cc.encrypt, "DEC" : cc.decrpyt}), 
-               "PLF" : (pf.setKey, {"ENC" : pf.encryption, "DEC" : pf.decryption}),
+               "PLF" : (pf.setKey, {"ENC" : pf.encrypt, "DEC" : pf.decrypt}),
                "RFC" : (rf.setKey, {"ENC" : rf.encrypt, "DEC" : rf.decrypt}),
                "VIG" : (vg.setKey, {"ENC" : vg.encrypt, "DEC" : vg.decrypt}),
                "RTS" : (rt.setKey, {"ENC" : rt.encrypt, "DEC" : rt.decrypt}),
