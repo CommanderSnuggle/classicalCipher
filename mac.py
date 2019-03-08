@@ -17,12 +17,9 @@ class MAC:
         if not(self.error):
             plaintext = plaintext.replace(" ", "")
             plaintext = plaintext.upper()
-
             ciphertext = []
-
             for letters in plaintext:
                  ciphertext.append(self.key[self.alphabet.index(letters)])
-
             return ''.join(ciphertext)
         else:
             return "Monoalphabetic encryption key error."
@@ -31,11 +28,9 @@ class MAC:
         if not(self.error):
             ciphertext = ciphertext.replace(" ", "")
             ciphertext = ciphertext.upper()
-
             plaintext = []
             for letters in ciphertext:
                 plaintext.append(self.alphabet[self.key.index(letters)])
-
             return ''.join(plaintext)
         else:
             return "Monoalphabetic decryption key error."
