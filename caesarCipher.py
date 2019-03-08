@@ -5,7 +5,7 @@ class caesarCipher:
     # Determine if the key is valid or not
     # Input: User defined key
     # Output: True of False if the key is valid
-    def set_key(self, key):
+    def setKey(self, key):
 
         # Valid key for Caesar is any integer digit > 0
         # Also if the key mod 26 is 0, it is invalid
