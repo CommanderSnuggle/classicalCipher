@@ -26,7 +26,9 @@ class playfair:
 
     def setMessage_text(self, string): #set the message to encrypt
         for i in range(len(string)):
-            if not string[i].isspace(): #strip spaces
+            if string[i].upper() == 'J':
+                self.message.append('I')
+            elif string[i].isalpha() and not string[i].isspace(): #strip spaces
                 self.message.append(string[i].upper())
         for i in range(0, len(self.message)-1, 2):
             if self.message[i] == self.message[i+1]:
@@ -34,11 +36,12 @@ class playfair:
         if (len(self.message) % 2) == 1:
             self.message.append('X') #pad with trailing 'X' if not even length
 
-        print("encryption")
     def setCipher_text(self, string):     #same as set message but sets the ciphertext you want to decode
         for i in range(len(string)):
-            if not string[i].isspace():
-                self.cipher.append(string[i].upper())
+            if string[i].upper() is 'J':
+                self.cipher.append('I')
+            elif string[i].isalpha() and not string[i].isspace():
+                    self.cipher.append(string[i].upper())
         for i in range(0, len(self.cipher)-1, 2):
             if self.cipher[i] == self.cipher[i+1]:
                 self.cipher.insert(i+1, 'X')
