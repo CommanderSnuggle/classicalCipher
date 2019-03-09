@@ -1,3 +1,11 @@
+Group Members :
+Anette Ulrichsen
+Brandon Nguyen 
+Farid Aalam
+Georden Grabuskie
+John Margis
+
+
 TO EXECUTE THE CIPHERS
 Run the cipher.py file followed by the arguments
 
