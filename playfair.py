@@ -69,7 +69,7 @@ class playfair:
         rb = [self.addr(chara)[1], self.addr(charb)[0]]
         return self.matrix[rb[0]][rb[1]], self.matrix[ra[0]][ra[1]]
     
-    def encryption(self, string): #encrypt message to ciphertext
+    def encrypt(self, string): #encrypt message to ciphertext
         self.clear()
         self.setMessage_text(string)
         self.cipher = []
@@ -86,7 +86,7 @@ class playfair:
         return ''.join(self.cipher)
 
 
-    def decryption(self, string): #decrypt ciphertext to plaintext message
+    def decrypt(self, string): #decrypt ciphertext to plaintext message
         self.clear()
         self.setCipher_text(string)
         for i in range(0, len(self.cipher)-1, 2):
